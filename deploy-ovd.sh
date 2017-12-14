@@ -3,28 +3,8 @@
 set -o errexit
 set -o nounset
 
-iam_top=/opt/fmw
-product=ovd
-mw_home=$iam_top/products/$product
-ora_home=$mw_home/ovd
-s_runjre=$mw_home/jdk
-
-instance_base=/opt/fmw/services/instances
-instance_name=ovd1
-
-# oracle inventory
-orainv_ptr=/opt/fmw/lcm/oraInst.loc
-iam_orainv_ptr=$orainv_ptr
-iam_orainv_grp=oinstall
-iam_orainv=/opt/fmw/lcm/oraInventory
-
-# s_wls=/mnt/oracle/iam-11.1.2.3/repo/installers/weblogic/wls_generic.jar
- s_wls=/mnt/oracle/weblogic/wls1036_generic.jar
- s_ovd=/mnt/oracle/iam-11.1.1.9
-s_java=/mnt/oracle/images/java/java7/server-jre-7u76-linux-x64.tar.gz
-# s_java=/mnt/oracle/images/java/java6/jrockit-R28.2.8-p16863120_2828_Linux-x86-64.zip
-s_java_dir=jdk1.7.0_76
-# s_java_dir=jrockit-jdk1.6.0_51
+. $DEPLOYER/user-config/ovd/ovd.sh
+. $DEPLOYER/user-config/files.sh
 
 # create home dir ---------------------------------------
 #

@@ -1,0 +1,26 @@
+--- java.security.orig  2017-12-12 16:54:03.243030000 +0100
++++ java.security       2017-12-12 16:57:41.924030000 +0100
+@@ -67,7 +67,7 @@
+ # On Windows systems, the URLs file:/dev/random and file:/dev/urandom
+ # enables use of the Microsoft CryptoAPI seed functionality.
+ #
+-securerandom.source=file:/dev/urandom
++securerandom.source=file:/dev/./urandom
+ #
+ # The entropy gathering device is described as a URL and can also
+ # be specified with the system property "java.security.egd". For example,
+@@ -405,7 +405,7 @@
+ #   jdk.certpath.disabledAlgorithms=MD2, DSA, RSA keySize < 2048
+ #
+ #
+-jdk.certpath.disabledAlgorithms=MD2, RSA keySize < 1024
++jdk.certpath.disabledAlgorithms=RSA keySize < 512
+ 
+ # Algorithm restrictions for Secure Socket Layer/Transport Layer Security
+ # (SSL/TLS) processing
+@@ -433,4 +433,4 @@
+ #
+ # Example:
+ #   jdk.tls.disabledAlgorithms=MD5, SSLv3, DSA, RSA keySize < 2048
+-jdk.tls.disabledAlgorithms=SSLv3
++jdk.tls.disabledAlgorithms=RSA keySize < 512
