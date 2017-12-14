@@ -50,6 +50,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       s.inline = "su - oracle  -c 'DEPLOYER=/vagrant /vagrant/deploy-database.sh | /usr/bin/tee /tmp/prov-database.log'"
     end
 
+    oms.vm.provision "oem", type: "shell" do |s|
+      s.inline = "su - oem  -c 'DEPLOYER=/vagrant /vagrant/deploy-oem.sh | /usr/bin/tee /tmp/prov-oem.log'"
+    end
+
   end
 
   config.vm.define :ovd do |ovd|
