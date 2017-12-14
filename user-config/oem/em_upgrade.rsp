@@ -29,7 +29,7 @@ RESPONSEFILE_VERSION=2.2.1.0.0
 # UNIX GROUP NAME and INVENTORY LOCATION
 #################################################################################
 #-------------------------------------------------------------------------------
-#Specify UNIX GROUP NAME and INENTORY LOCATION if there is no central invetory and
+#Specify UNIX GROUP NAME and INVENTORY LOCATION if there is no central inventory and
 #inventory location is not passed using -invptrLoc 
 #UNIX_GROUP_NAME :<String> UNIX GROUP NAME.
 #       Example    : UNIX_GROUP_NAME="dba"
@@ -73,9 +73,9 @@ DECLINE_SECURITY_UPDATES=true
 
 #-------------------------------------------------------------------------------
 INSTALL_UPDATES_SELECTION="skip"
-#STAGE_LOCATION=<Value Unspecified>
-#MYORACLESUPPORT_USERNAME_FOR_SOFTWAREUPDATES=<Value Unspecified>
-#MYORACLESUPPORT_PASSWORD_FOR_SOFTWAREUPDATES=<Value Unspecified>
+# STAGE_LOCATION=<Value Unspecified>
+# MYORACLESUPPORT_USERNAME_FOR_SOFTWAREUPDATES=<Value Unspecified>
+# MYORACLESUPPORT_PASSWORD_FOR_SOFTWAREUPDATES=<Value Unspecified>
 
 ################################################################################
 # Various inputs required for Upgrade and Configuration
@@ -88,9 +88,9 @@ INSTALL_UPDATES_SELECTION="skip"
 #OLD_BASE_DIR:<String> Old middleware Home that you want to upgrade.
 #             This is applicable when ONE_SYSTEM=true
 #-------------------------------------------------------------------------------
-ORACLE_MIDDLEWARE_HOME_LOCATION="/opt/oracle/fmw/emw12103"
-ORACLE_INSTANCE_HOME_LOCATION="/opt/oracle/fmw/em_inst"
-OLD_BASE_DIR="/opt/oracle/emw"
+ORACLE_MIDDLEWARE_HOME_LOCATION=<Value Unspecified>
+ORACLE_INSTANCE_HOME_LOCATION=<Value Unspecified>
+OLD_BASE_DIR=<Value Unspecified>
 
 #-------------------------------------------------------------------------------
 #ORACLE_HOSTNAME:<String> Current Host name where the installer is invoked.
@@ -98,7 +98,7 @@ OLD_BASE_DIR="/opt/oracle/emw"
 #By default the fully qualified hostname of the machine will taken(without providing this value)
 #Value for this ORACLE_HOSTNAME has to be provided only if you want to configure with different hostname.
 #-------------------------------------------------------------------------------
-#ORACLE_HOSTNAME=<Value Unspecified>
+ORACLE_HOSTNAME=<Value Unspecified>
 
 
 #-------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ ONE_SYSTEM=true
 #Applicable for ONE_SYSTEM=false
 #AGENT_BASE_DIR:<String> Agent home location where agent will be installed.
 #-------------------------------------------------------------------------------
-#AGENT_BASE_DIR="/opt/oracle/fmw/agent"
+AGENT_BASE_DIR=<Value Unspecified>
 
 
 #------------------------------------------------------------------------------
@@ -119,17 +119,17 @@ ONE_SYSTEM=true
 #through Pre-upgrade console. This is applicable for Two-System upgrade. i.e, ONE_SYSTEM=false.
 #OLD_DATABASE_CONNECTION_DESCRIPTION:<String> Old Repository Connect Descriptor	
 #-------------------------------------------------------------------------------
-#OLD_DATABASE_CONNECTION_DESCRIPTION=<Value Unspecified>
+OLD_DATABASE_CONNECTION_DESCRIPTION=<Value Unspecified>
 
 #------------------------------------------------------------------------------
 #OLD_DATABASE_SYSMAN_PASSWORD:<String> Old Repository SYSMAN password required 
 #only for TWO_SYSTEM system upgrade
 #-------------------------------------------------------------------------------
-#OLD_DATABASE_SYSMAN_PASSWORD=<Value Unspecified>
+OLD_DATABASE_SYSMAN_PASSWORD=<Value Unspecified>
 
 #-------------------------------------------------------------------------------
 #WLS_SECTION:Update the following set of variables for EMGC upgrade.
-#Applicable for both ONE_SYSTEM=true ( 10.2.0.5 -> 12.1.0.3.0  upgrade) and 
+#Applicable for both ONE_SYSTEM=true ( 10.2.0.5 -> 12.1.0.4.0  upgrade) and 
 #ONE_SYSTEM=false (i.e, TWO_SYSTEM)
 #WLS_ADMIN_SERVER_USERNAME:<String> Weblogic server user name.
 #WLS_ADMIN_SERVER_PASSWORD / WLS_ADMIN_SERVER_CONFIRM_PASSWORD:<String> Weblogic
@@ -137,31 +137,32 @@ ONE_SYSTEM=true
 #NODE_MANAGER_PASSWORD / NODE_MANAGER_CONFIRM_PASSWORD:<String> Node Manager 
 #       Password and Node Manager Confirm Password
 #-------------------------------------------------------------------------------
-#WLS_ADMIN_SERVER_USERNAME="weblogic"
-#WLS_ADMIN_SERVER_PASSWORD=""
-#WLS_ADMIN_SERVER_CONFIRM_PASSWORD=""
-#NODE_MANAGER_PASSWORD=""
-#NODE_MANAGER_CONFIRM_PASSWORD=""
+WLS_ADMIN_SERVER_USERNAME=<Value Unspecified>
+WLS_ADMIN_SERVER_PASSWORD=<Value Unspecified>
+WLS_ADMIN_SERVER_CONFIRM_PASSWORD=<Value Unspecified>
+NODE_MANAGER_PASSWORD=<Value Unspecified>
+NODE_MANAGER_CONFIRM_PASSWORD=<Value Unspecified>
 
 #-------------------------------------------------------------------------------
 #Update the following set of variables for First OMS Upgrade from 11.1/12.1.0.1.0
-# /12.1.0.2.0 and additional OMS upgrade from 10.2.0.5/11.1/12.1.0.1.0/12.1.0.2.0
-#to 12.1.0.3.0 . Comment the WLS_SECTION above before uncommenting and providing a 
+# /12.1.0.2.0/12.1.0.3.0 and additional OMS upgrade from 10.2.0.5/11.1/12.1.0.1.0
+# /12.1.0.2.0/12.1.0.3.0 to 12.1.0.4.0 . 
+#Comment the WLS_SECTION above before uncommenting and providing a 
 #value for below variables
 #-------------------------------------------------------------------------------
 #WLS_ADMIN_SERVER_PASSWORD:<String> Weblogic admin server password 
 #-------------------------------------------------------------------------------
-WLS_ADMIN_SERVER_PASSWORD="Montag11"
+WLS_ADMIN_SERVER_PASSWORD=<Value Unspecified>
 
 
 #-------------------------------------------------------------------------------
-#Applicable for both ONE_SYSTEM and TWO_SYSTEM upgrade scenario from 10.2.0.5 -> 12.1.0.3.0
+#Applicable for both ONE_SYSTEM and TWO_SYSTEM upgrade scenario from 10.2.0.5 -> 12.1.0.4.0
 #JVM_DIAGNOSTICS_TABLESPACE_LOCATION:<String> JVM table space location.
 #-------------------------------------------------------------------------------
-#JVM_DIAGNOSTICS_TABLESPACE_LOCATION=<Value Unspecified>
+JVM_DIAGNOSTICS_TABLESPACE_LOCATION=<Value Unspecified>
 
 #-------------------------------------------------------------------------------
-#Applicable for ONE_SYSTEM=false (i.e, "TWO_SYSTEM") from 10.2.0.5/11.1 -> 12.1.0.3.0
+#Applicable for ONE_SYSTEM=false (i.e, "TWO_SYSTEM") from 10.2.0.5/11.1 -> 12.1.0.4.0
 #DATABASE_HOSTNAME:<String> Hostname of the Repository database.
 #       Example    : DATABASE_HOSTNAME="hostname.domain.com"
 #LISTENER_PORT:<String>  Port on which the Repository database is running.
@@ -169,29 +170,29 @@ WLS_ADMIN_SERVER_PASSWORD="Montag11"
 #SERVICENAME_OR_SID:<String> SID or Service name  of the Repository database.
 #       Example    : SERVICENAME_OR_SID="emrep"
 #----------------------------------------------------------------------------
-#DATABASE_HOSTNAME=<Value Unspecified>
-#LISTENER_PORT=<Value Unspecified>
-#SERVICENAME_OR_SID=<Value Unspecified>
+DATABASE_HOSTNAME=<Value Unspecified>
+LISTENER_PORT=<Value Unspecified>
+SERVICENAME_OR_SID=<Value Unspecified>
 
 #----------------------------------------------------------------------------
 #Applicable for both ONE_SYSTEM=true/false (i.e,for both ONE_SYSTEM and TWO_SYSTEM)
-#from 10.2.0.5/11.1/12.1.0.1.0/12.1.0.2.0 -> 12.1.0.3.0 upgrade.
+#from 10.2.0.5/11.1/12.1.0.1.0/12.1.0.2.0/12.1.0.3.0 -> 12.1.0.4.0 upgrade.
 #SYS_PASSWORD:<String> Password of DBA user used to create repository schema.
 #       Example    : SYS_PASSWORD="password"
 #SYSMAN_PASSWORD :<String>Password for sysman user.
 #-------------------------------------------------------------------------------
-SYS_PASSWORD="Montag11"
-SYSMAN_PASSWORD="Montag11"
+SYS_PASSWORD=<Value Unspecified>
+SYSMAN_PASSWORD=<Value Unspecified>
 
 #-------------------------------------------------------------------------------
 #Applicable for ONE_SYSTEM upgrade scenario from 10.2.0.5/11.1/12.1.0.1.0
-#/12.1.0.2.0  -> 12.1.0.3.0
+#/12.1.0.2.0/12.1.0.3.0  -> 12.1.0.4.0
 #REPOSITORY_BACKUP:<Boolean> As a prerequisite, you must back up the Management 
 #Repository before you start upgrading your Enterprise Manager system. If you have
 #already taken a backup, then set this parameter to TRUE. Otherwise, take a backup 
 #immediately, then set this parameter to TRUE, and then proceed with the upgrade operation
 #-------------------------------------------------------------------------------
-REPOSITORY_BACKUP_DONE=true
+REPOSITORY_BACKUP_DONE=false
 
 #-------------------------------------------------------------------------------
 #PLUGIN_SELECTION:<StringList>  List of new plug-ins to be deployed during upgrade.
@@ -199,7 +200,7 @@ REPOSITORY_BACKUP_DONE=true
 #upgraded/migrated based on the  availability of newer version of plug-in software.
 # StringList contains list of strings and each string is PLUGIN_ID of that plugin.
 #<DVD>/Disk1/plugins has list of plugins that are shipped as part of DVD.
-# Example:If you want to install 12.1.0.2.0_oracle.sysman.empa_2000_0.opar and 12.1.0.2.0_oracle.sysman.vt_2000_0.opar then pass
+# Example:If you want to install 12.1.0.4.0_oracle.sysman.empa_2000_0.opar and 12.1.0.4.0_oracle.sysman.vt_2000_0.opar then pass
 # PLUGIN_SELECTION={"oracle.sysman.empa","oracle.sysman.vt"}
 #-------------------------------------------------------------------------------
 #PLUGIN_SELECTION={}
@@ -231,5 +232,5 @@ FROM_LOCATION="../oms/Disk1/stage/products.xml"
 #    oracle.sysman.top.oms, 10.2.0.0.0 : Oracle Enterprise Manager Grid Console 10.2.0.0.0 
 #Example: TOPLEVEL_COMPONENT = {"oracle.sysman.top.agent","10.2.0.0.0"}
 #-------------------------------------------------------------------------------
-TOPLEVEL_COMPONENT={"oracle.sysman.top.oms","12.1.0.3.0"}
+TOPLEVEL_COMPONENT={"oracle.sysman.top.oms","12.1.0.5.0"}
 ####################################################################################

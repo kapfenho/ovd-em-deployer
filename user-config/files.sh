@@ -2,7 +2,7 @@
 # 
 
 # scripts location
-       DEPLOYER=/vagrant
+#       DEPLOYER=/vagrant
        # SYS_DIR=${BASE}/sys/redhat
   #     LIB_DIR=${BASE}/lib
 #  TEMPLATE_DIR=${LIB_DIR}/templates
@@ -14,7 +14,7 @@
 
 #       RESP_DB=${RESP_DIR}/db_install.rsp
 #RESP_ORAINVPTR=${TEMPLATE_DIR}/oraInst.loc
-     JDK_PATCH=${MISC_DIR}/jdk.patch
+#     JDK_PATCH=${MISC_DIR}/jdk.patch
          
 #       ENV_DIR=${LIB_DIR}/env 
 #       DBS_ENV=${LIB_DIR}/env/dbs_profile.sh

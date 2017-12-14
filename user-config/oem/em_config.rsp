@@ -30,7 +30,7 @@ RESPONSEFILE_VERSION=2.2.1.0.0
 # UNIX GROUP NAME and INVENTORY LOCATION
 #################################################################################
 #-------------------------------------------------------------------------------
-#Specify UNIX GROUP NAME and INENTORY LOCATION if there is no central invetory and
+#Specify UNIX GROUP NAME and INVENTORY LOCATION if there is no central inventory and
 #inventory location is not passed using -invptrLoc 
 #UNIX_GROUP_NAME :<String> UNIX GROUP NAME.
 #       Example    : UNIX_GROUP_NAME="dba"
@@ -75,8 +75,8 @@ DECLINE_SECURITY_UPDATES=true
 #-------------------------------------------------------------------------------
 INSTALL_UPDATES_SELECTION="skip"
 STAGE_LOCATION="/mnt/oracle/em-12.1.0.5/stage"
-#MYORACLESUPPORT_USERNAME_FOR_SOFTWAREUPDATES="dummy"
-#MYORACLESUPPORT_PASSWORD_FOR_SOFTWAREUPDATES="dummy"
+#MYORACLESUPPORT_USERNAME_FOR_SOFTWAREUPDATES=<Value Unspecified>
+#MYORACLESUPPORT_PASSWORD_FOR_SOFTWAREUPDATES=<Value Unspecified>
 
 ################################################################################
 #PROXY DETAILS FOR SECURITY UPDATES/ SOFTWARE UPDATES 
@@ -87,10 +87,10 @@ STAGE_LOCATION="/mnt/oracle/em-12.1.0.5/stage"
 #PROXY_HOST:<String> Server providing proxy access.
 #PROXY_PORT:<String> Port for proxy access.
 #------------------------------------------------------------------------------
-#PROXY_USER=""
-#PROXY_PWD=""
-#PROXY_HOST=""
-#PROXY_PORT=""
+#PROXY_USER=<Value Unspecified>
+#PROXY_PWD=<Value Unspecified>
+#PROXY_HOST=<Value Unspecified>
+#PROXY_PORT=<Value Unspecified>
 
 
 #-------------------------------------------------------------------------------
@@ -170,8 +170,7 @@ SYSMAN_PASSWORD="Montag11"
 SYSMAN_CONFIRM_PASSWORD="Montag11"
 #-------------------------------------------------------------------------------
 #DEPLOYMENT_SIZE:<String> If you are planning to do simple install then us following
-#DEPLOYMENT_SIZE="MINI"
-#       
+#DEPLOYMENT_SIZE=<String> Can be "SMALL","MEDIUM" or "LARGE"       
 #-------------------------------------------------------------------------------
 DEPLOYMENT_SIZE="SMALL"
 
@@ -193,7 +192,7 @@ JVM_DIAGNOSTICS_TABLESPACE_LOCATION="/opt/oracle/oradata/lunes/oem_mgmt_deepdive
 #-------------------------------------------------------------------------------
 AGENT_REGISTRATION_PASSWORD="Montag11"
 AGENT_REGISTRATION_CONFIRM_PASSWORD="Montag11"
-STATIC_PORTS_FILE=/vagrant/lib/resp/staticports.ini"
+STATIC_PORTS_FILE="/vagrant/user-config/oem/staticports.ini"
 
 #-------------------------------------------------------------------------------
 #PLUGIN_SELECTION:<StringList>  list of extra plugins to deployed.
@@ -222,14 +221,14 @@ FROM_LOCATION="../oms/Disk1/stage/products.xml"
 #    oracle.sysman.top.oms, 10.2.0.0.0 : Oracle Enterprise Manager Grid Console 10.2.0.0.0 
 #Example: DEINSTALL_LIST = {"oracle.sysman.top.agent","10.2.0.0.0"}
 #-------------------------------------------------------------------------------
-DEINSTALL_LIST={"oracle.sysman.top.oms","12.1.0.3.0"}
+DEINSTALL_LIST={"oracle.sysman.top.oms","12.1.0.5.0"}
 
 #-------------------------------------------------------------------------------
 #REMOVE_HOMES:<StringList> List of the homes to be removed during a deinstall 
 #       session. Each home is represented by its full path.
 #Example: REMOVE_HOMES = {<full_path_of_home1>,<full_path_of_home2>, ...}
 #-------------------------------------------------------------------------------
-REMOVE_HOMES=/opt/oem/fmw/oms
+REMOVE_HOMES={"/opt/oem/fmw/oms"}
 
 ####################################################################################
 #Please Don't change the values of these variables
@@ -254,6 +253,6 @@ CONFIGURATION_TYPE="ADVANCED"
 #    oracle.sysman.top.oms, 10.2.0.0.0 : Oracle Enterprise Manager Grid Console 10.2.0.0.0 
 #Example: TOPLEVEL_COMPONENT = {"oracle.sysman.top.agent","10.2.0.0.0"}
 #-------------------------------------------------------------------------------
-TOPLEVEL_COMPONENT={"oracle.sysman.top.oms","12.1.0.3.0"}
+TOPLEVEL_COMPONENT={"oracle.sysman.top.oms","12.1.0.5.0"}
 
 ####################################################################################

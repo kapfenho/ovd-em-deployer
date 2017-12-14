@@ -165,8 +165,8 @@ install  --owner=oracle  --group=oinstall --mode=0775 --directory /opt/oracle   
 install  --owner=oracle  --group=oinstall --mode=0775 --directory /var/log/oracle     # logs (local)
 
 install  --owner=oem     --group=oem      --mode=0775 --directory /opt/oem
+install  --owner=oem     --group=oem      --mode=0775 --directory /opt/oem/software-library
 install  --owner=oem     --group=oem      --mode=0775 --directory /opt/oemagent
-# install  --owner=oemagent --group=oemagent --mode=0775 --directory /opt/oemagent
 
 install  --owner=fmwuser --group=fmwgroup --mode=0775 --directory /opt/fmw            # base directory
 install  --owner=fmwuser --group=fmwgroup --mode=0775 --directory /opt/fmw/lcm        # life cycle manager (shared)
