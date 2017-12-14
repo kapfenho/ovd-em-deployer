@@ -5,10 +5,10 @@ create_oms_user_env() {
     then
         log "OMS >> creating user environment..."
 
-        cat ${OEM_ENV} > ${HOME}/.bash_profile
-        cp -f ${BASHRC_CONFIG} ${HOME}/.bashrc
-        mkdir -p ${HOME}/.env
-        cp -f ${LIB_DIR}/env/emcli.sh ${HOME}/.env
+        mkdir -p $HOME/.env
+        cp -f $DEPLOYER/lib/env/em_profile.sh $HOME/.bash_profile
+        cp -f $DEPLOYER/lib/env/bashrc        $HOME/.bashrc
+        cp -f $DEPLOYER/lib/env/emcli.sh      $HOME/.env
 
         . ~/.bashrc
 
@@ -26,11 +26,11 @@ configure_em() {
     then
         log "OMS >> configuring OMS..."
         # MEMORY_OPTIONS="-ms1024m -mx2048m -XX:MaxPermSize=2048m"
-        ${OEM_HOME}/sysman/install/ConfigureGC.sh \
-            WLS_DOMAIN_NAME=${DOMAIN_NAME} \
+        $OEM_HOME/sysman/install/ConfigureGC.sh \
+            WLS_DOMAIN_NAME=$DOMAIN_NAME \
             -silent \
-            -responseFile ${RESP_DIR}/em_config.rsp \
-            -invPtrLoc ${ORAINVPTR} \
+            -responseFile $DEPLOYER/user-config/oem/em_config.rsp \
+            -invPtrLoc $ORAINVPTR \
             -b_startAgent=false 
         log "OMS >> successfully configured OMS"
     fi

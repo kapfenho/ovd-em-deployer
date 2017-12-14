@@ -1,20 +1,19 @@
-#!/bin/sh -x
+#!/bin/sh
 
 set -o errexit
 set -o nounset
 
 umask 0002
 
-. ${DEPLOYER}/lib/libcommon.sh
-. ${DEPLOYER}/lib/libcommon2.sh
-. ${DEPLOYER}/lib/liboms.sh
-
-source ${DEPLOYER}/user-config/files.sh
-source ${DEPLOYER}/user-config/files_em.sh
+. $DEPLOYER/lib/libcommon.sh
+. $DEPLOYER/lib/libcommon2.sh
+. $DEPLOYER/lib/liboem.sh
+. $DEPLOYER/user-config/files.sh
+. $DEPLOYER/user-config/files_em.sh
 
 if ! [ -d $ORACLE_HOME ]
 then
-    log "OMS >> installing software..."
+    log "OEM >> installing software..."
 
     cat > $ORAINVPTR <<-EOS
 inventory_loc=/opt/oracle/oraInventory
@@ -23,12 +22,12 @@ EOS
 
     ${IMAGE_OEM}/runInstaller -silent \
         -invPtrLoc ${ORAINVPTR} \
-        -responseFile $DEPLOYER/user-config/oms/em_software_only.rsp \
+        -responseFile $DEPLOYER/user-config/oem/em_software_only.rsp \
         -waitforcompletion
     
     # cp ${BASE}/doc/em-upgrade-README.markdown \
     #     ${BASE_OEM}/README.markdown
-    log "OMS >> software successfully installed"
+    log "OEM >> software successfully installed"
 fi
 
 # Configure OEM Master Agent
@@ -44,18 +43,18 @@ fi
 #
 if ! [ -f /etc/oraInst.loc ]
 then
-    log "OMS >> running inventory root script orainstRoot.sh..."
+    log "OEM >> running inventory root script orainstRoot.sh..."
     sudo -n ${ORAINV}/orainstRoot.sh
-    log "OMS >> inventory root script ran successfully"
+    log "OEM >> inventory root script ran successfully"
 fi
 
 # execute EM root script
 #
 if ! [ -f /etc/init.d/gcstartup ]
 then
-    log "OMS >> running service root script allroot.sh..."
+    log "OEM >> running service root script allroot.sh..."
     sudo -n ${OEM_HOME}/allroot.sh
-    log "OMS >> service root script ran successfully"
+    log "OEM >> service root script ran successfully"
 fi
 
 
@@ -65,10 +64,10 @@ configure_em
 # create profile
 create_oms_user_env
 
-log "OMS >> restarting instance..."
+log "OEM >> restarting instance..."
 
 # restart oms instance
 ${OEM_HOME}/bin/emctl stop oms -all
 ${OEM_HOME}/bin/emctl start oms
 
-log "OMS >> deployment finished successfully"
+log "OEM >> deployment finished successfully"

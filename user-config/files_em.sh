@@ -32,8 +32,8 @@ export           WLS_PORT=7001
                AGENT_HOME=${BASE_MASTER}/core/${EM_VERSION}
               SHARED_INST=${BASE_AGENT}/agent_inst
               MASTER_INST=${BASE_MASTER}/agent_inst
-            BASHRC_CONFIG=${ENV_DIR}/bashrc
-          NODEMANAGER_LOC=/vagrant/sys/redhat/init.d/nodemanager
+#            BASHRC_CONFIG=${ENV_DIR}/bashrc
+#          NODEMANAGER_LOC=/vagrant/sys/redhat/init.d/nodemanager
                  LOGS_DIR=/var/log/oem
 
 # oracle inventory pointer
@@ -49,8 +49,8 @@ export           WLS_PORT=7001
 #               OPATCH_RSP=${MISC_DIR}/ocm.rsp
 
 # EM Config response file
-         RESP_OEM_INSTALL=${RESP_DIR}/em_software_only.rsp
-          RESP_OEM_CONFIG=${RESP_DIR}/em_configure.rsp
+#         RESP_OEM_INSTALL=${RESP_DIR}/em_software_only.rsp
+#          RESP_OEM_CONFIG=${RESP_DIR}/em_configure.rsp
 
 # Named Credentials setup
          SSH_DEPLOY_HOSTS="ovd.vie.agoracon.at"

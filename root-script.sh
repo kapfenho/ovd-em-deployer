@@ -131,16 +131,23 @@ chmod 440 /etc/sudoers.d/fmwgroup
 echo "oracle  ALL=(ALL)  NOPASSWD: ALL" > /etc/sudoers.d/oracle
 chmod 440 /etc/sudoers.d/oracle
 
+echo "oem  ALL=(ALL)  NOPASSWD: ALL" > /etc/sudoers.d/oem
+chmod 440 /etc/sudoers.d/oem
+
 # --- system limits
 #
 cat >> /etc/security/limits.d/91-fusion.conf <<-EOF
 @fmwgroup  soft    nofile     150000
 @fmwgroup  hard    nofile     150000
+oem        soft    nofile     150000
+oem        hard    nofile     150000
 EOF
 
 cat >> /etc/security/limits.d/90-nproc.conf <<-EOF
 @fmwgroup  soft    nproc     16384
 @fmwgroup  hard    nproc     16384
+oem        soft    nproc     16384
+oem        hard    nproc     16384
 EOF
 
 cp /etc/security/limits.d/90-nproc.conf /etc/security/limits.d/90-nproc.conf.backup
@@ -178,6 +185,4 @@ mount -a
 
 echo "Red Hat Enterprise Linux Server release 6.7 (Santiago)" >>/etc/redhat-release
 
-
 exit 0
-
