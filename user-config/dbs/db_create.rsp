@@ -187,7 +187,8 @@ SID = "lunes"
 # Default value : None
 # Mandatory     : Yes
 #-----------------------------------------------------------------------------
-TEMPLATENAME = "em_12c.dbc"
+# TEMPLATENAME = "em_12c.dbc"
+TEMPLATENAME = "General_Purpose.dbc"
 
 #-----------------------------------------------------------------------------
 # Name          : OBFUSCATEDPASSWORDS
