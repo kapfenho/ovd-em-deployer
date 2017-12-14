@@ -1,0 +1,6 @@
+ORACLE_HOME=/opt/oemagent/master/agent/core/12.1.0.3.0
+AGENT_INSTANCE_HOME=/opt/oemagent/agent_inst
+AGENT_REGISTRATION_PASSWORD=Montag11
+b_startAgent=TRUE
+ORACLE_HOSTNAME=oms.vie.agoracon.at
+

@@ -1,0 +1,18 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# Source bash_profile definitions
+if [ -f ~/.bash_profile ]; then
+        . ~/.bash_profile
+fi
+
+# User specific aliases and functions
+
+alias oh="cd ${ORACLE_HOME}"
+alias dh="cd ${DOMAIN_HOME}"
+alias ih="cd ${INSTANCE_HOME}"
+alias lh="cd /var/log/oem"
