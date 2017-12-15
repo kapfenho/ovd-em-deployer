@@ -6,18 +6,22 @@ create_oms_user_env() {
         log "OMS >> creating user environment..."
 
         mkdir -p $HOME/.env
+        cp -f $DEPLOYER/lib/env/*.env $HOME/.env
         echo "source ~/.env/common.env" >>$HOME/.bash_profile
-        cp -f $DEPLOYER/lib/env/bashrc        $HOME/.bashrc
-        cp -f $DEPLOYER/lib/env/emcli.sh      $HOME/.env
-
-        . ~/.bashrc
-
-        log "OMS >> user environment successfully created, files:"
-        log "       - ~/.bash_profile"
-        log "       - ~/.bashrc"
-        log '       - ~/.env/*'
     fi
 }
+
+# clean em control are in repository database ----------------
+#
+oms_deregister_control() { (
+log "OMS >> deregister database control in repository database"
+    # ORACLE_HOME is set already
+    export ORACLE_SID=$DB_SERVICENAME
+
+    $ORACLE_HOME/bin/emca -deconfig dbcontrol db -repos drop \
+      -SID $DB_SERVICENAME -PORT $DB_PORT \
+      -SYS_PWD "$DBS_SYS_PWD" -SYSMAN_PWD "$DBS_SYSMAN_PWD"
+) }
 
 # Oracle Enterprise Manager configuration --------------------
 #

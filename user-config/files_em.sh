@@ -23,7 +23,10 @@ export           WLS_PORT=7001
         EM_PORT=7302
         EM_USER=sysman
         EM_PASS=Montag11
- AGENT_REG_PASS=Montag11
+ AGENT_REG_PASS=$EM_PASS
+    DBS_SYS_PWD=$EM_PASS
+ DBS_SYSMAN_PWD=$EM_PASS
+ 
      EM_VERSION=12.1.0.5.0
      AGENT_HOME=${BASE_MASTER}/core/${EM_VERSION}
     SHARED_INST=${BASE_AGENT}/agent_inst

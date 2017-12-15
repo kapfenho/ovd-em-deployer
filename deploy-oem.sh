@@ -57,15 +57,17 @@ then
     log "OEM >> service root script ran successfully"
 fi
 
+# deregister repository database
+oms_deregister_control
 
-#  $ORACLE_HOME/bin/emca -deconfig dbcontrol db -repos drop -SYS_PWD Montag11 -SYSMAN_PWD Montag11
-#  -> enter SID and listener port
-
-# configure Oracle Enterprise Manager
+# create oms instance
 configure_em
 
-# create profile
+# create profiles
 create_oms_user_env
+
+source ~/.env/common.env
+source ~/.env/oms.env
 
 log "OEM >> restarting instance..."
 
