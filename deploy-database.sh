@@ -13,8 +13,8 @@ set -o nounset
 
 umask 0002
 
-_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${DEPLOYER}/user-config/database.config
+. ${DEPLOYER}/user-config/files_em.sh
 . ${DEPLOYER}/lib/libcommon.sh
 . ${DEPLOYER}/lib/libcommon2.sh
 . ${DEPLOYER}/lib/libdb.sh
@@ -82,6 +82,9 @@ set +o errexit
 rcd_service oracle stop
 set -o errexit
 rcd_service oracle start
+
+# deregister repository database
+oms_deregister_control
 
 log "Database has been deployed"
 

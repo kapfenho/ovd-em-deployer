@@ -11,18 +11,6 @@ create_oms_user_env() {
     fi
 }
 
-# clean em control are in repository database ----------------
-#
-oms_deregister_control() { (
-log "OMS >> deregister database control in repository database"
-    # ORACLE_HOME is set already
-    export ORACLE_SID=$DB_SERVICENAME
-
-    $ORACLE_HOME/bin/emca -deconfig dbcontrol db -repos drop \
-      -SID $DB_SERVICENAME -PORT $DB_PORT \
-      -SYS_PWD "$DBS_SYS_PWD" -SYSMAN_PWD "$DBS_SYSMAN_PWD"
-) }
-
 # Oracle Enterprise Manager configuration --------------------
 #
 configure_em() {
@@ -39,4 +27,11 @@ configure_em() {
         log "OMS >> successfully configured OMS"
     fi
 }
+
+# Configure OEM Master Agent
+# configure_master() {
+#   # Creating plugin list for OEM Master Agent
+#   ${AGENT_HOME}/perl/bin/perl ${AGENT_HOME}/sysman/install/create_plugin_list.pl \
+#       -instancehome ${MASTER_INST}
+# }
 

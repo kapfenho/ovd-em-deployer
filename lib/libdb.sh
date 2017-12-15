@@ -196,3 +196,18 @@ EOF
   export ORACLE_SID=$old_sid 
 }
 
+# clean em control are in repository database ----------------
+#
+oms_deregister_control() {
+    log "OMS >> deregister database control in repository database"
+
+    # export ORACLE_HOME=/opt/oracle/product/11.2/db
+    export ORACLE_SID=$DB_SERVICENAME
+    # export ORACLE_HOSTNAME=$DB_HOST
+
+    $ORACLE_HOME/bin/emca -deconfig dbcontrol db -repos drop -silent \
+        -SID $DB_SERVICENAME -PORT $DB_PORT \
+        -ORACLE_HOSTNAME $DB_HOST \
+      -SYS_PWD "$DBS_SYS_PWD" -SYSMAN_PWD "$DBS_SYSMAN_PWD"
+}
+
