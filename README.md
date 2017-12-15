@@ -20,6 +20,12 @@ Before running the deploment you need to get the Oracle installation
 images in the stated version.  Extract the images and make the available
 by NFS. You can customize the client mount options in the Vagrantfile.
 
+You'll also need virtualization solution installed and
+[Vagrant](https://www.vagrantup.com).  The Vagrantfile is using the 
+[VirtualBox](https://www.virtualbox.org) provider, but this can be
+adapted easily. The VM NIC will use a private network (host only
+adapters). Adapt the IP Adresses in the Vagtantfile if necessary.
+
 To start the deployment process (including VM creation):
 
     $ vagrant up [ oms | ovd ]
