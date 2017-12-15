@@ -42,7 +42,7 @@ The NFS mount point hosting the installation images shall shall look
 like this tree (subdirectories are not shown):
 
 ```
-oracle
+oracle   [ -> mount point ]
 ├── database-ee-11.2.0.4
 |   └── p13390677_112040_Linux-x86-64
 |       ├── client
