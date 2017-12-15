@@ -271,7 +271,8 @@ oracle.install.db.config.starterdb.password.DBSNMP=
 # 1. GRID_CONTROL
 # 2. DB_CONTROL
 #-------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.control=DB_CONTROL
+#oracle.install.db.config.starterdb.control=DB_CONTROL
+oracle.install.db.config.starterdb.control=GRID_CONTROL
 
 #-------------------------------------------------------------------------------
 # Specify the Management Service to use if Grid Control is selected to manage 

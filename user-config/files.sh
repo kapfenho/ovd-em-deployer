@@ -10,10 +10,6 @@ IMAGE_JAVA=${MNT_IMAGES}/images/java/java6/jrockit-R28.2.8-p16863120_2828_Linux-
   MNT_TEST=${MNT_IMAGES}/README.markdown
 
 # machine information
- GROUPS_UNIX=( oinstall oem oemagent dba )
-    USER_ORA=oracle
-    USER_OEM=oem
-  USER_AGENT=oemagent
 U_AGENT_HOME=/home/oemagent
     BASE_DBS=/opt/oracle
     BASE_OEM=/opt/oem

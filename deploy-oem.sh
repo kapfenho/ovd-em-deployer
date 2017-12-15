@@ -3,7 +3,7 @@
 set -o errexit
 set -o nounset
 
-umask 0002
+umask 0022
 
 . $DEPLOYER/lib/libcommon.sh
 . $DEPLOYER/lib/libcommon2.sh
@@ -57,6 +57,9 @@ then
     log "OEM >> service root script ran successfully"
 fi
 
+
+#  $ORACLE_HOME/bin/emca -deconfig dbcontrol db -repos drop -SYS_PWD Montag11 -SYSMAN_PWD Montag11
+#  -> enter SID and listener port
 
 # configure Oracle Enterprise Manager
 configure_em
