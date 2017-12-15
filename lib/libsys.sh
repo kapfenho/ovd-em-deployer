@@ -41,12 +41,12 @@ add_vim_features() {
   local d_cust=/usr/share/vim/vimfiles
   local d_sys=/usr/share/vim/vim72
   
-  cp ${_DIR}/sys/vim/vimrc ${d_rc}
+  cp ${DEPLOYER}/sys/vim/vimrc ${d_rc}
   sed -i.sav "16 i execute pathogen#infect('bundle/{}', '/usr/share/vim/vimfiles/bundle/{}')" ${d_rc}
 
-  tar --no-same-owner --no-same-permissions -xzf ${_DIR}/sys/vim/bundle.tar.gz --directory=${d_cust}
+  tar --no-same-owner --no-same-permissions -xzf ${DEPLOYER}/sys/vim/bundle.tar.gz --directory=${d_cust}
 
   [ -a ${d_cust}/autoload ] || mkdir -p ${d_cust}/autoload
-  cp -Rp ${_DIR}/sys/vim/pathogen.vim ${d_cust}/autoload/
+  cp -Rp ${DEPLOYER}/sys/vim/pathogen.vim ${d_cust}/autoload/
 }
 

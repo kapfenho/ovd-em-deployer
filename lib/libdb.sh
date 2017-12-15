@@ -80,7 +80,7 @@ install_db() {
         -waitforcompletion \
         -ignoreSysPrereqs \
         -ignorePrereq \
-        -responseFile ${_DIR}/user-config/dbs/db_install.rsp
+        -responseFile ${DEPLOYER}/user-config/dbs/db_install.rsp
     log "install_db" "installation done, executing root scripts..."
     log "install_db" "executing root script.."
     if ! sudo -n ${ORACLE_HOME}/root.sh ; then
@@ -133,7 +133,7 @@ patch_orahome()
       cd ${s_patches}/$1
       ${ORACLE_HOME}/OPatch/opatch apply \
           -silent \
-          -ocmrf ${_DIR}/lib/dbs/ocm.rsp
+          -ocmrf ${DEPLOYER}/lib/dbs/ocm.rsp
       log "patch_orahome_$1" "end"
     )
   else
@@ -152,7 +152,7 @@ create_database()
   if ! grep -q ${dbs_sid} /etc/oratab ; then
     
     # create db with resp file
-    ${ORACLE_HOME}/bin/dbca -silent -responseFile ${_DIR}/user-config/dbs/db_create.rsp
+    ${ORACLE_HOME}/bin/dbca -silent -responseFile ${DEPLOYER}/user-config/dbs/db_create.rsp
     log "create_database" "db created"
     log "create_database" "done"
   else
@@ -169,7 +169,7 @@ run_netca()
   log "run_netca" "start"
   if ! [ -a ${ORACLE_HOME}/network/admin/listener.ora ] ; then
     ${ORACLE_HOME}/bin/netca -silent \
-        -responsefile ${_DIR}/user-config/dbs/db_netca.rsp
+        -responsefile ${DEPLOYER}/user-config/dbs/db_netca.rsp
     log "run_netca" "done"
   else
     log "run_netca" "skipped"
