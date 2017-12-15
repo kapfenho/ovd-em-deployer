@@ -7,6 +7,10 @@ create_oms_user_env() {
 
         mkdir -p $HOME/.env
         cp -f $DEPLOYER/lib/env/*.env $HOME/.env
+        mkdir -p $HOME/bin
+        cp -f $DEPLOYER/lib/templates/oem/bin/* $HOME/bin
+        chmod 0755 ~/bin/*
+
         echo "source ~/.env/common.env" >>$HOME/.bash_profile
         echo "source ~/.env/oms.env"    >>$HOME/.bash_profile
     fi
