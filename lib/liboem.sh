@@ -8,6 +8,7 @@ create_oms_user_env() {
         mkdir -p $HOME/.env
         cp -f $DEPLOYER/lib/env/*.env $HOME/.env
         echo "source ~/.env/common.env" >>$HOME/.bash_profile
+        echo "source ~/.env/oms.env"    >>$HOME/.bash_profile
     fi
 }
 

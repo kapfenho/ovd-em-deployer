@@ -1,0 +1,3 @@
+#!/bin/sh
+[ -z "$INSTANCE_HOME" ] && source ~/.env/oms.env
+${OEM_HOME}/bin/emctl start oms

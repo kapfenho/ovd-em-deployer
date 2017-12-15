@@ -1,0 +1,2 @@
+#!/bin/sh
+/opt/oemagent/agent_inst/bin/emctl start agent
