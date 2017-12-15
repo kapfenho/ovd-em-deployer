@@ -35,3 +35,70 @@ The deployment took on my machine around two to three hours.
 In case you are not familiar with Vagrant and its features check the
 [Vagrant documentation](https://www.vagrantup.com/docs/index.html).
 
+
+## Installation Images
+
+The NFS mount point hosting the installation images shall shall look
+like this tree (subdirectories are not shown):
+
+```
+oracle
+├── database-ee-11.2.0.4
+|   └── p13390677_112040_Linux-x86-64
+|       ├── client
+|       ├── database
+|       ├── deinstall
+|       ├── examples
+|       ├── gateways
+|       └── grid
+├── weblogic
+|   └── wls1036_generic.jar
+├── em-12.1.0.5
+|   ├── bipruntime
+|   ├── install
+|   ├── jdk
+|   ├── libskgxn
+|   ├── oms
+|   ├── plugins
+|   ├── release_notes.pdf
+|   ├── response
+|   ├── runInstaller
+|   ├── stage
+|   ├── wls
+|   └── WT.zip
+├── iam-11.1.1.9
+|   ├── Disk1
+|   │   ├── doc
+|   │   ├── install
+|   │   ├── runInstaller
+|   │   ├── stage
+|   │   └── utils
+|   ├── Disk2
+|   │   └── stage
+|   ├── Disk3
+|   │   └── stage
+|   ├── Disk4
+|   │   └── stage
+|   ├── Disk5
+|   │   └── stage
+|   └── readme_fmw_ps7.htm
+└── images
+        java
+        ├── java6
+        │   └── jrockit-R28.2.8-p16863120_2828_Linux-x86-64.zip
+        └── java7
+            ├── jdk-7u75-linux-x64.tar.gz
+            ├── jdk-7u76-linux-x64.tar.gz
+            ├── jdk-7u76-macosx-x64.dmg
+            ├── jdk-7u76-macosx-x86_64-demos.tar.gz
+            ├── jre-7u75-linux-x64.tar.gz
+            ├── server-jre-7u75-linux-x64.tar.gz
+            └── server-jre-7u76-linux-x64.tar.gz
+
+```
+
+The exact path used in the virtual machines can be configure in the
+config files in folder `user-config`.
+
+The NFS mount is only used during deployment and can be removed
+afterwards (`/etc/fstab`).
