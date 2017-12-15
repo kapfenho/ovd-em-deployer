@@ -14,7 +14,6 @@ set -o nounset
 umask 0002
 
 . ${DEPLOYER}/user-config/database.config
-. ${DEPLOYER}/user-config/files_em.sh
 . ${DEPLOYER}/lib/libcommon.sh
 . ${DEPLOYER}/lib/libcommon2.sh
 . ${DEPLOYER}/lib/libdb.sh

@@ -4,7 +4,7 @@ set -o errexit
 set -o nounset
 
 . $DEPLOYER/user-config/ovd/ovd.sh
-. $DEPLOYER/user-config/files.sh
+. $DEPLOYER/user-config/oem.config
 
 # create home dir ---------------------------------------
 #

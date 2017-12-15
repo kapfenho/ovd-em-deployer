@@ -8,8 +8,7 @@ umask 0022
 . $DEPLOYER/lib/libcommon.sh
 . $DEPLOYER/lib/libcommon2.sh
 . $DEPLOYER/lib/liboem.sh
-. $DEPLOYER/user-config/files.sh
-. $DEPLOYER/user-config/files_em.sh
+. $DEPLOYER/user-config/oem.config
 
 if ! [ -d $ORACLE_HOME ]
 then
