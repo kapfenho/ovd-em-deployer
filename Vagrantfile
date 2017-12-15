@@ -6,8 +6,8 @@
 VAGRANTFILE_API_VERSION = "2"
 oms_ip = "192.168.168.45"
 ovd_ip = "192.168.168.48"
-box = "centos67fusion"
-box_url = "https://agoracon.at/boxes/centos67fusion.box"
+box = "centos69fusion"
+box_url = "https://agoracon.at/boxes/centos69fusion.box"
 
 hostfile = "
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
