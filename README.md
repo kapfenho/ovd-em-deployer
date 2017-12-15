@@ -27,5 +27,5 @@ To start the deployment process (including VM creation):
 The deployment took on my machine around two to three hours.
 
 In case you are not familiar with Vagrant and its features check the
-(Vagrant documentation)[https://www.vagrantup.com/docs/index.html].
+[Vagrant documentation](https://www.vagrantup.com/docs/index.html).
 
