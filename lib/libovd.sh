@@ -1,6 +1,55 @@
 # ovd deployment functions
 #
 
+# -----------------------------------------------------------------------
+#  create oracle inventory pointer
+#
+ovd_create_orainvptr()
+{
+  if ! [ -a ${iam_orainv_ptr} ] ; then
+      log "OVD >> Creating Oracle Inventory Pointer..."
+
+    cat > ${iam_orainv_ptr} <<-EOS
+      inventory_loc=${iam_orainv}
+      inst_group=${iam_orainv_grp}
+EOS
+      log "OVD >> Successfully created Oracle Inventory Pointer"
+  fi
+}
+
+# -----------------------------------------------------------------------
+# install weblogic server
+#
+weblogic_install()
+{
+  local _mw="${iam_top}/products/${1}"
+
+  if ! [ -a ${_mw}/wlserver_10.3 ] ; then
+
+    log "OVD >> Installing Weblogic Server..."
+
+    local _xml=$(mktemp /tmp/wls-XXXXXXXX)
+
+    cat > ${_xml} <<-EOS
+<?xml version="1.0" encoding="UTF-8"?>
+<bea-installer>
+<input-fields>
+<data-value name="BEAHOME" value="${_mw}" />
+<data-value name="WLS_INSTALL_DIR" value="${_mw}/wlserver_10.3" />
+<data-value name="COMPONENT_PATHS" value="WebLogic Server/Core Application Server|WebLogic Server/Administration Console|WebLogic Server/Configuration Wizard and Upgrade Framework|WebLogic Server/Web 2.0 HTTP Pub-Sub Server|WebLogic Server/WebLogic SCA|WebLogic Server/WebLogic JDBC Drivers|WebLogic Server/Third Party JDBC Drivers|WebLogic Server/WebLogic Server Clients|WebLogic Server/WebLogic Web Server Plugins|WebLogic Server/UDDI and Xquery Support|Oracle Coherence/Coherence Product Files" />
+</input-fields>
+</bea-installer>
+EOS
+    java -d64 -jar ${s_wls} -mode=silent -silent_xml=${_xml}
+    rm -f ${_xml}
+
+    log "OVD >> Successfully installed Weblogic Server"
+  else
+    log "OVD >> Skipped Weblogic server installation"
+  fi
+}
+
+
 # install OVD software.
 # preconditions:
 # - invenory pointer file already exists
@@ -51,3 +100,28 @@ ovd_create_instance() {
         echo "Skipped creation if OVD instance"
     fi
 }
+
+# ovd_install_jdk
+#
+ovd_install_jdk() {
+
+    if ! [ -e "$s_runjre" ]
+    then
+        log "OVD >> Installing JDK..."
+        pushd "$mw_home"
+        tar -xzf "$s_java"
+        # unzip -d "$mw_home" "$s_java"
+        ln -s "$s_java_dir" jdk
+        popd
+    
+        log "OVD >> Patching JDK..."
+
+        patch -b ${mw_home}/jdk/jre/lib/security/java.security \
+            $DEPLOYER/user-config/ovd/java7.security.patch
+        
+        log "OVD >> Successfully installed and patched JDK"
+    else
+        log "OVD >> Skipped JDK installation"
+    fi
+}
+

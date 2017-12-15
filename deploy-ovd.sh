@@ -9,6 +9,7 @@ umask 0002
 . $DEPLOYER/user-config/ovd/ovd.sh
 . $DEPLOYER/user-config/oem.config
 # functions
+. $DEPLOYER/lib/libcommon2.sh
 . $DEPLOYER/lib/libovd.sh
 
 # create home dir
@@ -19,9 +20,7 @@ ovd_install_jdk
 export PATH=/home/fmwuser/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:$s_runjre/bin
 export JAVA_HOME=$s_runjre
 
-source $DEPLOYER/lib/libiam.sh
-
-create_orainvptr
+ovd_create_orainvptr
 
 weblogic_install $product
 
