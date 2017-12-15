@@ -87,12 +87,6 @@ oracle   [ -> mount point ]
         ├── java6
         │   └── jrockit-R28.2.8-p16863120_2828_Linux-x86-64.zip
         └── java7
-            ├── jdk-7u75-linux-x64.tar.gz
-            ├── jdk-7u76-linux-x64.tar.gz
-            ├── jdk-7u76-macosx-x64.dmg
-            ├── jdk-7u76-macosx-x86_64-demos.tar.gz
-            ├── jre-7u75-linux-x64.tar.gz
-            ├── server-jre-7u75-linux-x64.tar.gz
             └── server-jre-7u76-linux-x64.tar.gz
 
 ```
