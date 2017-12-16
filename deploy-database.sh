@@ -74,6 +74,7 @@ create_database
 #run_netca
 
 # config_database_for_iam
+config_database_for_oem
 
 set_db_autostart
 rcd_add oracle ${DEPLOYER}/lib/templates/root/rcd-sysv/oracle

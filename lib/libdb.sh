@@ -42,6 +42,27 @@ EOF
   log "config_database_for_iam" "done"
 }
 
+config_database_for_oem()
+{
+  log "config_database_for_oem" "start"
+  if [ -z ${ORACLE_SID} ] ; then
+    ORACLE_SID=${dbs_sid}
+  fi
+  ${ORACLE_HOME}/bin/sqlplus / as sysdba ${ORACLE_HOME}/rdbms/admin/xaview.sql
+  ${ORACLE_HOME}/bin/sqlplus / as sysdba << EOF
+  @?/rdbms/admin/xaview.sql
+  ALTER SYSTEM SET PROCESSES=1600 SCOPE=SPFILE;
+  ALTER SYSTEM SET OPEN_CURSORS=1600 SCOPE=SPFILE;
+  ALTER SYSTEM SET SESSION_CACHED_CURSORS=500 SCOPE=SPFILE;
+  ALTER SYSTEM SET SESSION_MAX_OPEN_FILES=50 SCOPE=SPFILE;
+  SHUTDOWN IMMEDIATE;
+  STARTUP MOUNT;
+  ALTER DATABASE NOARCHIVELOG;
+  ALTER DATABASE OPEN;
+  EXIT;
+EOF
+  log "config_database_for_iam" "done"
+}
 #  Restart database with shutdown immediate, followed by start to online.
 #+ Vars used: ORACLE_HOME and ORACLE_SID
 #
