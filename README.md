@@ -41,8 +41,8 @@ In case you are not familiar with Vagrant and its features check the
 
 ## Status
 
-The project is currently under development (Dec 2017), see latest commit
-messages.
+Initial development phase, see latest commit messages and task list
+below.
 
 ### Task done
 
