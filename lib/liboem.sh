@@ -6,7 +6,7 @@ create_oms_user_env() {
         log "OMS >> creating user environment..."
 
         mkdir -p $HOME/.env
-        cp -f $DEPLOYER/lib/env/*.env $HOME/.env
+        cp -f $DEPLOYER/lib/templates/oem/env/* $HOME/.env
         mkdir -p $HOME/bin
         cp -f $DEPLOYER/lib/templates/oem/bin/* $HOME/bin
         chmod 0755 ~/bin/*

@@ -125,3 +125,21 @@ ovd_install_jdk() {
     fi
 }
 
+# create user profile --------------------------------------
+#
+ovd_create_user_env() {
+    if ! [ -d ~/.env ]
+    then
+        log "OVD >> creating user environment..."
+
+        mkdir -p $HOME/.env
+        cp -f $DEPLOYER/lib/templates/ovd/env/* $HOME/.env
+        mkdir -p $HOME/bin
+        # cp -f $DEPLOYER/lib/templates/ovd/bin/* $HOME/bin
+        # chmod 0755 ~/bin/*
+
+        echo "source ~/.env/common.env" >>$HOME/.bash_profile
+        echo "source ~/.env/ovd.env"    >>$HOME/.bash_profile
+    fi
+}
+

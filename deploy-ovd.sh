@@ -28,3 +28,4 @@ ovd_install_software
 
 ovd_create_instance
 
+ovd_create_user_env
