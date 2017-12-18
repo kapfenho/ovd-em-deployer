@@ -26,6 +26,10 @@ You'll also need virtualization solution installed and
 adapted easily. The VM NIC will use a private network (host only
 adapters). Adapt the IP adresses in the `Vagrantfile` if necessary.
 
+On the provisioning host at least 12 GB RAM is needed (4 GB for OVD and
+8 GB for EM). Each VM uses 50 GB disks, only used diskspace is allocated
+on the host. The extracted install images will take 17 GB disk space.
+
 To start the deployment process (including VM creation):
 
     $ vagrant up [ oms | ovd ]
@@ -34,6 +38,30 @@ The deployment took on my machine around two to three hours.
 
 In case you are not familiar with Vagrant and its features check the
 [Vagrant documentation](https://www.vagrantup.com/docs/index.html).
+
+## Status
+
+The project is currently under development (Dec 2017), see latest commit
+messages.
+
+### Task done
+
+- OVD: create virtual machine, install software, create instance,
+  configure instance
+- EM: create virtual machine, install software, create instance,
+  configure instance
+
+### Open Tasks
+
+- OVD: replacing the certificates (trusted and service
+  certificates)
+- EM: adding certificate authority
+- OVD: deployment of EM agent
+- EM: adding OVD instance to EM
+
+### Known Issues
+
+- None issues known yet
 
 
 ## Installation Images
