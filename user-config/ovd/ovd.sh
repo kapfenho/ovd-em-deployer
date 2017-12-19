@@ -14,3 +14,8 @@ orainv_ptr=/opt/fmw/lcm/oraInst.loc
 iam_orainv_ptr=$orainv_ptr
 iam_orainv_grp=oinstall
 iam_orainv=/opt/fmw/lcm/oraInventory
+
+domain_user="weblogic"
+domain_password="Montag11"
+nodemanager_user="weblogic"
+nodemanager_password="Montag11"

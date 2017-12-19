@@ -29,3 +29,13 @@ ovd_install_software
 ovd_create_instance
 
 ovd_create_user_env
+
+source ~/.env/common.env
+source ~/.env/ovd.env
+
+ovd_wlst_common_functions
+
+nodemanager_enroll
+nodemanager_keyfiles
+domain_keyfiles
+

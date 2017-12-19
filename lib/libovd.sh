@@ -85,7 +85,7 @@ ovd_create_instance() {
 
     if ! [ -d "$instance_base/$instance_name" ]
     then
-        echo "Creating OVD instance..."
+        log "Creating OVD instance..."
     
         ${ora_home}/bin/config.sh \
           -silent \
@@ -95,9 +95,9 @@ ovd_create_instance() {
           -waitforcompletion \
           -noconsole
     
-        echo "Successfully created OVD instance"
+        log "Successfully created OVD instance"
     else
-        echo "Skipped creation if OVD instance"
+        log "Skipped creation if OVD instance"
     fi
 }
 
@@ -132,14 +132,118 @@ ovd_create_user_env() {
     then
         log "OVD >> creating user environment..."
 
-        mkdir -p $HOME/.env
+        mkdir -p $HOME/.creds $HOME/.env $HOME/bin
         cp -f $DEPLOYER/lib/templates/ovd/env/* $HOME/.env
-        mkdir -p $HOME/bin
-        # cp -f $DEPLOYER/lib/templates/ovd/bin/* $HOME/bin
-        # chmod 0755 ~/bin/*
+        cp -f $DEPLOYER/lib/templates/ovd/bin/* $HOME/bin
+        chmod 0755 ~/bin/*
 
-        echo "source ~/.env/common.env" >>$HOME/.bash_profile
-        echo "source ~/.env/ovd.env"    >>$HOME/.bash_profile
+        log "source ~/.env/common.env" >>$HOME/.bash_profile
+        log "source ~/.env/ovd.env"    >>$HOME/.bash_profile
     fi
 }
 
+
+# deploy wlst standard functions ------------------------------
+#
+ovd_wlst_common_functions() {
+    for f in $DEPLOYER/lib/wlst/common/*
+    do
+        if [ -f $WL_HOME/common/wlst/$(basename $f) ]
+        then
+            log "WLST library $(basename $f) already deployed"
+        else
+            cp $f $WL_HOME/common/wlst/
+            echo "Deployed WLST library $(basename $f)"
+        fi
+    done
+}
+
+# create weblogic nodemanager keyfiles
+#
+nodemanager_keyfiles() {
+    if ! [ -f ~/.creds/nm.key ]
+    then
+        local _wlst="nmConnect(username='$nodemanager_user',password='$nodemanager_password',host=acGetFQDN(),port=nmPort,domainName=domName,domainDir=domDir,nmType='ssl')
+storeUserConfig(userConfigFile=nmUC,userKeyFile=nmUK,nm='true')
+y
+exit()
+"
+        echo "${_wlst}" | ${WL_HOME}/common/bin/wlst.sh -loadProperties ~/.env/ovd.prop
+    fi
+}
+
+# create weblogic domain nodemanager keyfiles
+#
+domain_keyfiles() {
+    local _bp=$DOMAIN_HOME/servers/AdminServer/security/boot.properties
+
+    if ! [ -f $_bp ]
+    then
+        touch $_bp
+        chmod 0640 $_bp
+        echo "username=$domain_user"     >> $_bp
+        echo "password=$domain_password" >> $_bp
+    fi
+
+    if ! [ -f ~/.creds/ovd.key ]
+    then
+
+        local _wlst="connect(username='$domain_user',password='$domain_password',url=domUrl)
+nmEnroll(domainDir=domDir,nmHome='$WL_HOME/common/nodemanager')
+storeUserConfig(userConfigFile=domUC,userKeyFile=domUK,nm='false')
+y
+exit()
+"
+        echo "${_wlst}" | ${WL_HOME}/common/bin/wlst.sh -loadProperties ~/.env/ovd.prop
+    fi
+}
+
+# create new ovd keystore and import entries from external keystore
+#   param1: filename of new keystore
+#   param2: pathname of source keystore to import from
+#
+ovd_import_keystore_from() {
+
+  local _new_ks=$INSTANCE_HOME/config/OVD/$INSTANCE_NAME/keystores/$1
+  
+  if ! [ -f "$_newks" ]
+  then
+        local _wlst="acConnect();
+custom();
+cd('oracle.as.management.mbeans.register');
+cd('oracle.as.management.mbeans.register:type=component,name=ovd1,instance=$INSTANCE_NAME');
+invoke('load',jarray.array([],java.lang.Object),jarray.array([],java.lang.String));
+importKeyStore('$INSTANCE_NAME','ovd1','ovd','$1','$domain_password','$2');
+exit()
+"
+        echo "${_wlst}" | ${WL_HOME}/common/bin/wlst.sh -loadProperties ~/.env/ovd.prop
+    fi
+}
+
+
+
+# import ca into emagent truststore
+#
+ovd_emagent_add_trust() {
+    local _wallet=/opt/fmw/services/instances/ovd1/EMAGENT/EMAGENT/sysman/config/monwallet
+    local _cert=$HOME/cert1/cert.pem
+    
+    $ORACLE_COMMON/bin/orapki wallet add -wallet $_wallet -cert $_cert -trusted_cert -pwd welcome
+}
+
+# register ovd with weblogic domain 
+#
+ovd_register_instance() {
+    local PWD=$(mktemp)
+    echo -n "$domain_password" >$PWD
+
+    $ORACLE_INSTANCE/bin/opmnctl updatecomponentregistration \
+      -adminHost ovd.vie.agoracon.at \
+      -adminPort 7201 \
+      -adminUsername $domain_user \
+      -adminPasswordFile $PWD \
+      -componentType OVD \
+      -componentName ovd1
+
+    rm -f $PWD
+}

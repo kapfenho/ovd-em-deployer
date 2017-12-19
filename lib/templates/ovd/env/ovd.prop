@@ -1,0 +1,13 @@
+# ovd.prop ----------------------------------------------------------
+# ovd manager domain property file
+#
+nmPort=5556
+domName=ovd
+domDir=/opt/fmw/products/ovd/user_projects/domains/ovd
+domAdminServer=ovd.vie.agoracon.at
+domAdminPort=7201
+domUrl=t3://ovd.vie.agoracon.at:7201
+domUC=/home/fmwuser/.creds/ovd.usr
+domUK=/home/fmwuser/.creds/ovd.key
+nmUC=/home/fmwuser/.creds/nm.usr
+nmUK=/home/fmwuser/.creds/nm.key

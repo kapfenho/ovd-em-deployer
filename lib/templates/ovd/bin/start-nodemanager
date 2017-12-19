@@ -1,0 +1,14 @@
+#!/bin/sh
+
+WLS_HOME=/opt/fmw/products/ovd/wlserver_10.3
+NM_HOME=/opt/fmw/products/ovd/wlserver_10.3/common/nodemanager
+LOG=/var/log/fmw/nodemanager/nodemanager.log
+
+JAVA_OPTIONS="-DNodeManagerHome=${NM_HOME} ${JAVA_OPTIONS}"
+JAVA_OPTIONS="-Dweblogic.security.SSL.enableJSSE=true ${JAVA_OPTIONS}"
+export JAVA_OPTIONS
+
+nohup ${WLS_HOME}/server/bin/startNodeManager.sh >>${LOG} 2>&1 &
+
+exit 0
+

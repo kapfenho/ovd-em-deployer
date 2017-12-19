@@ -1,0 +1,3 @@
+#!/bin/sh
+. ~/.env/ovd.env
+opmnctl startproc ias-component=ovd1

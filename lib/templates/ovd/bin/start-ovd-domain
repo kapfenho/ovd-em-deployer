@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. ~/.env/ovd.env
+
+${WL_HOME}/common/bin/wlst.sh -loadProperties ~/.env/ovd.prop <<EOS
+acNmConnect();
+nmStart('AdminServer');
+acConnect();
+start(name='wls_ods1');
+exit();
+EOS
+
+exit 0
+
