@@ -35,7 +35,6 @@ source ~/.env/ovd.env
 
 ovd_wlst_common_functions
 
-nodemanager_enroll
 nodemanager_keyfiles
 domain_keyfiles
 

@@ -132,13 +132,14 @@ ovd_create_user_env() {
     then
         log "OVD >> creating user environment..."
 
+        mkdir -p /var/log/fmw/nodemanager
         mkdir -p $HOME/.creds $HOME/.env $HOME/bin
         cp -f $DEPLOYER/lib/templates/ovd/env/* $HOME/.env
         cp -f $DEPLOYER/lib/templates/ovd/bin/* $HOME/bin
         chmod 0755 ~/bin/*
 
-        log "source ~/.env/common.env" >>$HOME/.bash_profile
-        log "source ~/.env/ovd.env"    >>$HOME/.bash_profile
+        echo "source ~/.env/common.env" >>$HOME/.bash_profile
+        echo "source ~/.env/ovd.env"    >>$HOME/.bash_profile
     fi
 }
 
