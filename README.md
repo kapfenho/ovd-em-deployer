@@ -39,6 +39,16 @@ The deployment took on my machine around two to three hours.
 In case you are not familiar with Vagrant and its features check the
 [Vagrant documentation](https://www.vagrantup.com/docs/index.html).
 
+## Replace Certificates in OVD
+
+The command `ovdkey update` can replace the currently used certificates
+of the LDAPS listener and the Admin Gateway listener.  Two reference
+keystores are used as import source.
+
+Please read the [OVD Admin
+Guide](https://docs.oracle.com/middleware/11119/ovd/ovd-admin/basic_listeners.htm#OVDAG4260)
+for a detailed task description.
+
 ## Status
 
 Initial development phase, see latest commit messages and task list
@@ -50,11 +60,11 @@ below.
   configure instance
 - EM: create virtual machine, install software, create instance,
   configure instance
+- OVD: replacing the certificates (trusted and service
+  certificates) for LDAPS and Admin Gateway
 
 ### Open Tasks
 
-- OVD: replacing the certificates (trusted and service
-  certificates)
 - EM: adding certificate authority
 - OVD: deployment of EM agent
 - EM: adding OVD instance to EM
