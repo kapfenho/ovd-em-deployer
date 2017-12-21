@@ -1,2 +1,2 @@
 #!/bin/sh
-$ORACLE_COMMON/common/bin/wlst.sh -loadProperties $HOME/.env/ovd.env
+$ORACLE_COMMON/common/bin/wlst.sh -loadProperties $HOME/.env/ovd.prop

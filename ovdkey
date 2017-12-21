@@ -1,0 +1,60 @@
+#!/bin/sh
+#
+#  This script manages the OVD keystore.
+#
+# check environment
+: ${JAVA_HOME:?}
+: ${ORACLE_HOME:?}
+: ${INSTANCE_HOME:?}
+
+ERR_SYNTAX_ERROR=80
+
+source $DEPLOYER/lib/libcommon2.sh
+source $DEPLOYER/lib/ovdkey.sh
+source $DEPLOYER/lib/ovdkeyhelp.sh
+
+if ! shopt -q login_shell ; then
+  source /etc/profile
+fi
+
+if   [ $# -lt 1 ] ; then
+  ovdkeyhelp       # not enough params
+  exit $ERROR_SYNTAX_ERROR
+else
+  cmd=$1
+  shift
+fi
+
+while getopts w: FLAG; do
+  case ${FLAG} in
+    w)  opt_w=${OPTARG} ;;  # wlst property file path
+    \?) # unrecognized option - show help
+      echo -e \\n"Option -${BOLD}${OPTARG}${NORM} not allowed."
+      ovdkeyhelp
+      exit $ERROR_SYNTAX_ERROR
+      ;;
+  esac
+done
+
+set -o errexit
+set -o errtrace
+
+case ${cmd} in
+
+    list)
+        list_keystore $*
+        ;;
+
+    update)
+        emagent_add_cert
+        update_keystore
+        update_component_registration
+        ;;
+
+    *)
+        ovdkeyhelp
+        exit $ERR_SYNTAX_ERROR
+        ;;
+esac
+
+exit 0
