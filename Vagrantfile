@@ -69,6 +69,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                     "--cpus", 4]
     end
 
+    ovd.vm.provision "ovd", type: "shell" do |s|
+      s.inline = "su - fmwuser -c 'DEPLOYER=/vagrant /vagrant/deploy-ovd.sh | /usr/bin/tee /tmp/prov-ovd.log'"
+    end
+
   end
 
 end
